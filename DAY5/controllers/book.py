@@ -1,7 +1,7 @@
 
-from flask import Flask,render_template, request,redirect
-from sqlite import Sqlite
-app = Flask(__name__)
+from flask import Flask,render_template, request,redirect,Blueprint
+from utils.sqlite import Sqlite
+app = Blueprint('book',__name__)
 
 
 @app.route('/')
@@ -45,6 +45,4 @@ def delete(id):
     Sqlite().execute(sql)
     return redirect('/')
 
-
-
-app.run(debug=True)
+# app.run(debug=True)
