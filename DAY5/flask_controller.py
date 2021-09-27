@@ -2,6 +2,16 @@ from flask import Flask,render_template, request,redirect
 import sqlite3
 app = Flask(__name__)
 
+def execute(sql):
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    connection.commit()
+    connection.close()
+
+
+
 
 @app.route('/')
 def index():
@@ -47,24 +57,14 @@ def edit(id):
 @app.route('/<int:id>/update', methods=['POST'])
 def update(id):
     params = request.form
-    db_name = 'python_training.db'
-    connection = sqlite3.connect(db_name)
-    cursor = connection.cursor()
     sql = f"UPDATE books SET name = '{params['name']}', kind = '{params['kind']}'  WHERE id = {id}"
-    cursor.execute(sql)
-    connection.commit()
-    connection.close()
+    execute(sql)
     return redirect('/')
 
 @app.route('/<int:id>/delete', methods=['POST'])
 def delete(id):
-    db_name ='python_training.db'
-    connection = sqlite3.connect(db_name)
-    cursor = connection.cursor()
     sql = f"DELETE FROM books WHERE id = { id }"
-    cursor.execute(sql)
-    connection.commit()
-    connection.close()
+    execute(sql)
     return redirect('/')
 
 
