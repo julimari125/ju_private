@@ -1,10 +1,12 @@
-from flask import Flask,render_template
+from flask import Flask,render_template, request
 import sqlite3
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
+    parameter = request.args
+    print(parameter)
     db_name = 'python_training.db'
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
