@@ -16,8 +16,12 @@ def index():
     connection.close
     return render_template('index.html', books = books )
 
-@app.route('/hello')
-def hello():
-    return ('<h1>hello</h1>')
+@app.route('/new')
+def new():
+    return render_template('new.html')
+
+@app.route('/create', methods=['POST'])
+def create():
+    print('create called!')
 
 app.run(debug=True)
