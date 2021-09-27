@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     parameter = request.args
     print(parameter.get('name'))
-    book_name = parameter.get('name')
+    book_name = parameter.get('name','')
     db_name = 'python_training.db'
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
