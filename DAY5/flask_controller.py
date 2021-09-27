@@ -35,8 +35,26 @@ def create():
 
 @app.route('/<int:id>/edit')
 def edit(id):
-    print(id)
-    return render_template('edit.html', id = id)
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql = f"SELECT * FROM books WHERE id = {id}"
+    book = cursor.execute(sql).fetchone()
+    connection.close()
+    return render_template('edit.html', book = book)
+
+
+@app.route('/<int:id>/update', methods=['POST'])
+def update(id):
+    params = request.form
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql = f"UPDATE books SET name = '{params['name']}', kind = '{params['kind']}'  WHERE id = {id}"
+    cursor.execute(sql)
+    connection.commit()
+    connection.close()
+    return redirect('/')
 
 
 app.run(debug=True)
