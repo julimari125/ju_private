@@ -34,6 +34,11 @@
                     <td>{{ book[1] }}</td>
                     <td>{{ book[2] }}</td>
                     <td><a href="/{{ book[0] }}/edit">更新</a></td>
+                    <td>
+                        <form action='/{{ book[0] }}/delete' method='POST'>
+                            <input type='submit' value='削除'>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

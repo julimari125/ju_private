@@ -56,5 +56,17 @@ def update(id):
     connection.close()
     return redirect('/')
 
+@app.route('/<int:id>/delete', methods=['POST'])
+def delete(id):
+    db_name ='python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql = f"DELETE FROM books WHERE id = { id }"
+    cursor.execute(sql)
+    connection.commit()
+    connection.close()
+    return redirect('/')
+
+
 
 app.run(debug=True)
