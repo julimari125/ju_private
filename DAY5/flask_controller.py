@@ -8,6 +8,7 @@ def index():
     parameter = request.args
     print(parameter.get('name'))
     book_name = parameter.get('name','')
+    book_kind = parameter.get('kind','')
     db_name = 'python_training.db'
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
@@ -15,7 +16,7 @@ def index():
     books = cursor.execute(sql).fetchall()
     print(books)
     connection.close
-    return render_template('index.html', book = book_name)
+    return render_template('index.html', book = book_name, kind = book_kind )
 
 @app.route('/hello')
 def hello():
