@@ -8,6 +8,10 @@
 p{
     font-size: 2rem;
     background-color:cornflowerblue;
+    border-color: red;
+    padding: 5rem;
+    margin: 19rem;
+    border: solid 1px black;
 }
 
 h2{
