@@ -22,6 +22,21 @@ def new():
 
 @app.route('/create', methods=['POST'])
 def create():
+    params = request.form
+    print(params)
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql = f"INSERT INTO books (name,kind) VALUES ('{params['name']}','{params['kind']}')"
+    connection.execute(sql)
+    connection.commit()
+    connection.close()
     return redirect('/')
+
+@app.route('/<int:id>/edit')
+def edit(id):
+    print(id)
+    return render_template('edit.html', id = id)
+
 
 app.run(debug=True)
