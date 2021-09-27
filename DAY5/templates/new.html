@@ -1,5 +1,8 @@
-<p>本の名前を入力してください</p>
+
 <form action='/create' method='POST'>
+    {% extends "layout.html" %}
+    {% block content %}
+    <p>本の名前を入力してください</p>
     <label for="name">書籍名</label>
 
     <input type='text' name='name'>
@@ -11,3 +14,4 @@
     </select>
     <input type='submit'>
 </form>
+     {% endblock %}
