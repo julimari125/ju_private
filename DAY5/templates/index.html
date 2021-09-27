@@ -6,6 +6,7 @@
     </head>
 
     <body>
+        {% block content%}
         <p>本の名前を入力してください</p>
         <form action='/'>
             <input type='text' name='name'>
@@ -16,8 +17,25 @@
             </select>
             <input type='submit'>
         </form>
-        <h1>書籍名:{{ book }}, 種類:{{ kind }}</h1>
-    
+        <h2>検索結果</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>種類</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book[0] }}</td>
+                    <td>{{ book[1] }}</td>
+                    <td>{{ book[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endblock %}
     </body>
-
 </html>
