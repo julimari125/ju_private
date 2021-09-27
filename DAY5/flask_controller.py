@@ -9,9 +9,9 @@ def index():
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
     sql = 'SELECT * from books'
-    book = cursor.execute(sql).fetchone()
+    books = cursor.execute(sql).fetchall()
     connection.close
-    return render_template('index.html', book = book)
+    return render_template('index.html', book = books)
 
 @app.route('/hello')
 def hello():
