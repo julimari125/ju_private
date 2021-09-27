@@ -11,11 +11,7 @@
             <input type='text' name='name'>
             <input type='submit'>
         </form>
-        {% block content %}
-        {% for book in books %}
-        <h1>{{ book[1] }}が好きだ</h1>
-        {% endfor %}
-        {% endblock %}
+        <h1>{{ book }}</h1>
     </body>
 
 </html>

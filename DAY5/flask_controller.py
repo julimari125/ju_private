@@ -6,7 +6,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     parameter = request.args
-    print(parameter)
+    print(parameter.get('name'))
+    book_name = parameter.get('name')
     db_name = 'python_training.db'
     connection = sqlite3.connect(db_name)
     cursor = connection.cursor()
@@ -14,7 +15,7 @@ def index():
     books = cursor.execute(sql).fetchall()
     print(books)
     connection.close
-    return render_template('index.html', books = books)
+    return render_template('index.html', book = book_name)
 
 @app.route('/hello')
 def hello():
