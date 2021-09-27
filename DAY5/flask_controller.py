@@ -10,8 +10,9 @@ def index():
     cursor = connection.cursor()
     sql = 'SELECT * from books'
     books = cursor.execute(sql).fetchall()
+    print(books)
     connection.close
-    return render_template('index.html', book = books)
+    return render_template('index.html', books = books)
 
 @app.route('/hello')
 def hello():

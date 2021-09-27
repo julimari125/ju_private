@@ -5,7 +5,11 @@
     </head>
 
     <body>
-        <h1>{{ book }}が好き</h1>
+        {% block content %}
+        {% for book in books %}
+        <h1>{{ book[1] }}が好き</h1>
+        {% endfor %}
+        {% endblock %}
     </body>
 
 </html>
