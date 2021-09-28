@@ -11,11 +11,11 @@ def index():
     book_kind = parameter.get('kind','')
     sql = f"SELECT * from books WHERE name LIKE '%{book_name}%' AND kind LIKE '%{book_kind}%'"
     books = Sqlite().fetch_all(sql)
-    return render_template('index.html', books = books )
+    return render_template('books/index.html', books = books )
 
 @app.route('/new')
 def new():
-    return render_template('new.html')
+    return render_template('books/new.html')
 
 @app.route('/create', methods=['POST'])
 def create():
@@ -29,7 +29,7 @@ def create():
 def edit(id):
     sql = f"SELECT * FROM books WHERE id = {id}"
     book = Sqlite().fetch_one(sql)
-    return render_template('edit.html', book = book)
+    return render_template('books/edit.html', book = book)
 
 
 @app.route('/<int:id>/update', methods=['POST'])
