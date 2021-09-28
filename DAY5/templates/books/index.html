@@ -3,6 +3,9 @@
 
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384- ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
     </head>
 
     <body>
@@ -16,10 +19,10 @@
                 <option value='ビジネス'>ビジネス</option>
                 <option value='自己啓発'>自己啓発</option>
             </select>
-            <input type='submit'>
+            <input class= "btn btn-primary" type='submit'>
         </form>
-        <a href ='/new'>書籍の登録</a>
-        <h2>検索結果</h2>
+        <a href='/new' class="btn btn-primary">書籍の登録</a>
+        <h1>検索結果</h1>
         <table>
             <thead>
                 <tr>
@@ -34,10 +37,10 @@
                     <td>{{ book[0] }}</td>
                     <td>{{ book[1] }}</td>
                     <td>{{ book[2] }}</td>
-                    <td><a href="/{{ book[0] }}/edit">更新</a></td>
+                    <td><a href="/{{ book[0] }}/edit" class ="btn btn-primary">更新</a></td>
                     <td>
                         <form action='/{{ book[0] }}/delete' method='POST'>
-                            <input type='submit' value='削除'>
+                            <input type='submit' class='btn btn-danger'value='削除'>
                         </form>
                     </td>
                 </tr>
@@ -46,4 +49,5 @@
         </table>
         {% endblock %}
     </body>
+
 </html>
