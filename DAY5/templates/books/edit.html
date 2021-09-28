@@ -7,7 +7,7 @@
         {% extends "layout.html" %}
         {% block content%}
         <h1>編集する</h1>
-        <form action='/{{ book[0] }}/update' method='POST'>
+        <form action='/{{ book.id }}/update' method='POST'>
             <input type="text" name="name" value="{{ book[1] }}">
             <select name='kind'>
                 {% for value in ['小説', 'ビジネス', '自己啓発'] %}

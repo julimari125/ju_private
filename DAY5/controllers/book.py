@@ -1,6 +1,7 @@
 
 from flask import Flask,render_template, request,redirect,Blueprint
 from utils.sqlite import Sqlite
+from models.book import Book
 app = Blueprint('book',__name__)
 
 
@@ -27,8 +28,8 @@ def create():
 
 @app.route('/<int:id>/edit')
 def edit(id):
-    sql = f"SELECT * FROM books WHERE id = {id}"
-    book = Sqlite().fetch_one(sql)
+    book = Book.get_by_id(id)
+    print(book)
     return render_template('books/edit.html', book = book)
 
 
