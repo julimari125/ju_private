@@ -20,10 +20,10 @@
                 <option value='ビジネス'>ビジネス</option>
                 <option value='自己啓発'>自己啓発</option>
             </select>
-            <input class= "btn btn-primary" type='submit'>
+            <input class="btn btn-primary" type='submit'>
         </form>
         <a href='/new' class="btn btn-primary">書籍の登録</a>
-        <h1>検索結果</h1>
+        <h3>検索結果</h3>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -40,10 +40,10 @@
                     <td>{{ book[0] }}</td>
                     <td>{{ book[1] }}</td>
                     <td>{{ book[2] }}</td>
-                    <td><a href="/{{ book[0] }}/edit" class ="btn btn-primary">更新</a></td>
+                    <td><a href="/{{ book[0] }}/edit" class="btn btn-primary">更新</a></td>
                     <td>
                         <form action='/{{ book[0] }}/delete' method='POST'>
-                            <input type='submit' class='btn btn-danger'value='削除'>
+                            <input type='submit' class='btn btn-danger' value='削除'>
                         </form>
                     </td>
                 </tr>
