@@ -1,2 +1,6 @@
 flask
 lizard
+peewee
+pytest 
+pytest-flask 
+pytest-cov
