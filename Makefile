@@ -1,0 +1,2 @@
+pyv:
+  python --version
