@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-</head>
-<body>
-    <form action='/create' method='POST'>
-        <input type='submit'>
-    </form>
-</body>
+
+    <head>
+    </head>
+
+    <body>
+        <form action='/create' method='POST'>
+            <label for='name'>書籍名</label>
+            <input type='text' name='name'>
+            <label for='kind'>種類</label>
+            <select name='kind'>
+                {% for value in ['小説', 'ビジネス', '自己啓発'] %}
+                    <option value='{{ value }}'>{{ value }}</option>
+                {% endfor %}
+            </select>
+            <input type='submit'>
+        </form>
+    </body>
+
 </html>

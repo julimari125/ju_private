@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+</head>
+<body>
+    {% block content %}
+    <form action='/{{ book[0] }}/update' method='POST'>
+        <input type='text' name = 'name' value =" {{ book[1] }}">
+        <select name = "kind">
+            {% for value in ['小説', 'ビジネス', '自己啓発']%}
+                <option value='{{ value }}'>{{ value }}</option>
+            {% endfor %}
+        </select>   
+    </form>
+    {% endblock %}
+</body>
+</html>
