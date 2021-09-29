@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    </head>
+
+    <body>
+        {% block content %}
+        <p>これはフォームです</p>
+        <form action='/'>
+            <input type='text' name='name'>
+            <select name='kind'>
+                <option value='小説'>小説</option>
+                <option value='ビジネス'>ビジネス</option>
+                <option value='自己啓発'>自己啓発</option>
+            </select>
+            <input type='submit'>
+        </form>
+        <a href ='/new'>書籍の登録</a>
+        <h2>検索結果</h2>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>名前</th><th>種類</th></tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                 <tr>
+                    <td> {{ book[0] }} </td>
+                    <td> {{ book[1] }} </td>
+                    <td> {{ book[2] }} </td>
+                    <td> {{ book[3] }} </td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endblock %}
+    </body>
+
+</html>
