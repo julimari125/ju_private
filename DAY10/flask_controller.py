@@ -1,4 +1,6 @@
-from flask import Flask,render_template, request
+from os import curdir
+from sqlite3.dbapi2 import Cursor
+from flask import Flask,render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -14,7 +16,6 @@ def index():
     cursor = connection.cursor()
     sql =  f"SELECT * FROM books WHERE name LIKE '%{book_name}%' AND kind LIKE '%{book_kind}%'"
     books = cursor.execute(sql).fetchall()
-    print(books)
     connection.close()
     return render_template('index.html',books = books)
 
@@ -29,6 +30,49 @@ def new():
 
 @app.route('/create',methods=['POST'])
 def create():
-    return('create called')
+    params = request.form
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql =f"INSERT INTO books (name,kind) VALUES ('{params['name']}','{params['kind']}')"
+    cursor.execute(sql)
+    connection.commit()
+    connection.close()
+    return redirect('/')
+
+@app.route('/<int:id>/edit')
+def edit(id):
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql =f" SELECT * FROM books WHERE id = {id} "
+    book = cursor.execute(sql).fetchone()
+    connection.commit()
+    connection.close()
+    return render_template('edit.html', book=book)
+
+@app.route('/<int:id>/update', methods=['POST'])
+def update(id):
+    params = request.form
+    db_name = 'python_training.db'
+    connection = sqlite3.connect(db_name)
+    cursor = connection.cursor()
+    sql = f"UPDATE books SET name = '{params['name']}', kind = '{params['kind']}' WHERE id = {id}"
+    cursor.execute(sql) 
+    connection.commit()
+    connection.close()
+    return redirect('/')
+
+@app.route('/<int:id>/delete', methods=['POST'])
+def delete(id):
+    deb_name = 'python_training.db'
+    connection = sqlite3.connect(deb_name)
+    cursor = connection.cursor()
+    sql = f"DELETE FROM books WHERE id = {id}"
+    cursor.execute(sql)
+    connection.commit()
+    connection.close()
+    return redirect('/')
+
 
 app.run(debug=True)

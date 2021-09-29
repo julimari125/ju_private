@@ -8,8 +8,13 @@
         <input type='text' name = 'name' value =" {{ book[1] }}">
         <select name = "kind">
             {% for value in ['小説', 'ビジネス', '自己啓発']%}
-                <option value='{{ value }}'>{{ value }}</option>
+                {% if book[2] == value %}
+                    <option value='{{ value }}' selected>{{ value }}</option>
+                {% else %}
+                    <option value='{{ value }}'>{{ value }}</option>
+                {% endif %}
             {% endfor %}
+            <input type ='submit'>
         </select>   
     </form>
     {% endblock %}
