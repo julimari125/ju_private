@@ -1,0 +1,17 @@
+
+<form action='/create' method='POST'>
+    {% extends "layout.html" %}
+    {% block content %}
+    <p>本の名前を入力してください</p>
+    <label for="name">書籍名</label>
+
+    <input type='text' name='name'>
+    <label for="kind">種類</label>
+    <select name='kind'>
+        {% for value in ['小説', 'ビジネス', '自己啓発'] %}
+        <option value='{{ value }}'>{{ value }}</option>
+        {% endfor %}
+    </select>
+    <input type='submit'>
+</form>
+     {% endblock %}

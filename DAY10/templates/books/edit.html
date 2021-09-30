@@ -3,7 +3,8 @@
 <head>
 </head>
 <body>
-    {% block content %}
+    
+    {% extends "layout.html" %}{% block content %}
     <form action='/{{ book[0] }}/update' method='POST'>
         <input type='text' name = 'name' value =" {{ book[1] }}">
         <select name = "kind">

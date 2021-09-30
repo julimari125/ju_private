@@ -5,6 +5,7 @@
     </head>
 
     <body>
+        {% extends "layout.html" %} {% block content %}
         <form action='/create' method='POST'>
             <label for='name'>書籍名</label>
             <input type='text' name='name'>
@@ -17,5 +18,5 @@
             <input type='submit'>
         </form>
     </body>
-
 </html>
+{% endblock %}

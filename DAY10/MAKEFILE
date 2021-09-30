@@ -1,0 +1,5 @@
+static_analyze:
+	lizard -l python -L 20 -C 20 -a 3 app -w
+
+pyv:
+	python --version
